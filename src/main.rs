@@ -1,4 +1,4 @@
-use types::{Lexer, Token};
+use types::Lexer;
 
 mod ast;
 mod types;
