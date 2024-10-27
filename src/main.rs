@@ -4,7 +4,6 @@ mod ast;
 mod types;
 
 fn main() {
-    //println!("Hello, world!");
     let input = r#"
         CREATE TABLE users IF NOT EXISTS (
             BIG TEXT name,
@@ -29,12 +28,15 @@ fn main() {
         //Dont go into recursive loop of death on unclosed parenthese
         (
         "#;
-    let mut lex = Lexer::new(input);
-    loop {
+    let lex = Lexer::new(input);
+    for token in lex {
+        print!("{token:?} ");
+    }
+    /*loop {
         let nt = lex.next_token();
         print!("{nt:?} ");
         if nt == Token::EOF {
             break;
         }
-    }
+    }*/
 }

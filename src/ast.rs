@@ -26,6 +26,20 @@ impl<'a> Lexer<'a> {
                     '<' => Token::Lt,
                     '>' => Token::Gt,
                     '.' => Token::Dot,
+                    '%' => Token::Percent,
+                    '\\' => Token::Backslash,
+                    '$' => Token::Dollar,
+                    '€' => Token::Euro,
+                    '^' => Token::Circonflexe,
+                    '?' => Token::Questionmark,
+                    '!' => Token::Exclamationmark,
+                    '&' => Token::And,
+                    '|' => Token::Pipe,
+                    '+' => Token::Plus,
+                    '#' => Token::Hashtag,
+                    '´' => Token::AccentAigu,
+                    '`' => Token::AccentGrave,
+                    '°' => Token::Degree,
                     '"' => self.read_string(),
                     '/' => self.skip_comment(),
                     c if c.is_alphabetic() => self.read_identifier(c),
@@ -98,7 +112,6 @@ impl<'a> Lexer<'a> {
         let mut multiline = 0;
         let mut comment_buffer = "/".to_owned();
         while let Some(&c) = self.input.peek() {
-            //println!("{},{},{},{}", prev, c, multiline, singleline);
             match (prev, c, multiline, singleline) {
                 ('/', '/', 0, _) => singleline = true,
                 (_, '\n', 0, true) => break,
@@ -182,5 +195,16 @@ impl<'a> Lexer<'a> {
         }
 
         Token::String(string)
+    }
+}
+
+impl<'a> Iterator for Lexer<'a> {
+    type Item = Token;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        match self.next_token() {
+            Token::EOF => None,
+            token => Some(token),
+        }
     }
 }
