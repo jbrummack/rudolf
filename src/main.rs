@@ -1,7 +1,4 @@
-use types::Lexer;
-
-mod ast;
-mod types;
+use rudolf::types::Lexer;
 
 fn main() {
     let input = r#"
