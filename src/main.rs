@@ -1,4 +1,6 @@
+use rudolf::idt;
 use rudolf::types::Lexer;
+use rudolf::types::Token;
 
 fn main() {
     let input = r#"
@@ -10,9 +12,8 @@ fn main() {
             BIG TEXT name,
             ORD INTEGER age,
         );
-
+        300 / 30.06;
         INSERT INTO users (name, age) VALUES
-            ("Julius Brummack", 20),
             ("Max Mustermann", 35)
         ;
         SELECT (users.name, users.age) FROM users WHERE (age = 20);
@@ -29,6 +30,7 @@ fn main() {
     for token in lex {
         print!("{token:?} ");
     }
+    println!("{:?}", idt!("CREATE"));
     /*loop {
         let nt = lex.next_token();
         print!("{nt:?} ");

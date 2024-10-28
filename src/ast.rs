@@ -35,6 +35,7 @@ impl<'a> Lexer<'a> {
                     '!' => Token::Exclamationmark,
                     '&' => Token::And,
                     '|' => Token::Pipe,
+                    '-' => Token::Minus,
                     '+' => Token::Plus,
                     '#' => Token::Hashtag,
                     '´' => Token::AccentAigu,

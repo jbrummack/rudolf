@@ -1,5 +1,11 @@
 use std::{iter::Peekable, str::Chars};
 
+#[macro_export]
+macro_rules! idt {
+    ($str:expr) => {
+        Token::Identifier($str.to_string())
+    };
+}
 #[derive(Debug, PartialEq, Clone)]
 pub enum Token {
     _ParenOpen,
@@ -30,6 +36,7 @@ pub enum Token {
     Exclamationmark,
     And,
     Pipe,
+    Minus,
     Plus,
     Hashtag,
     AccentAigu,
